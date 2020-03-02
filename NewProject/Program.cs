@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 
 namespace NewProject
@@ -10,20 +6,22 @@ namespace NewProject
     public class Program
     {
         public static readonly int[] eme_age = { 60, 65 };
-        public static readonly string[] menu_plec = {"Kobieta", "Mężczyzna"};
+        public static readonly string[] menu_plec = { "Kobieta", "Mężczyzna" };
         static void Main(string[] args)
         {
             Console.WriteLine("Aplikacja Emerytura");
+
+            GlobalMenu.GenerateMenu();
             User user_data = new User();
 
             Console.WriteLine($"Witaj {user_data.imie} {user_data.nazwisko}!\nMasz {user_data.wiek} lat");
-            
+
             int do_em = eme_age[user_data.plec] - user_data.wiek;
             if (do_em > 0)
             {
                 Console.WriteLine($"Do emerytury pozostało ci {do_em}");
             }
-            else if(do_em == 0)
+            else if (do_em == 0)
             {
                 Console.WriteLine("Na emeryturę przejdziesz w tym roku");
             }
@@ -73,7 +71,7 @@ namespace NewProject
         public int plec = GetGender();
 
         private static string GetUserData(string value)
-        { 
+        {
             while (true)
             {
                 string temp = Program.GetData($"{value}");
@@ -99,7 +97,7 @@ namespace NewProject
         {
             while (true)
             {
-                start:
+            start:
                 Console.WriteLine("Wybierz płeć spośród dostępnych: ");
                 for (int i = 0; i < Program.menu_plec.Length; i++)
                 {
@@ -109,7 +107,7 @@ namespace NewProject
                 if ((Program.IntCheck(temp)) == true)
                 {
                     int plec = int.Parse(temp);
-                    if((plec < Program.menu_plec.Length)==true)
+                    if ((plec < Program.menu_plec.Length) == true)
                     {
                         return plec;
                     }
@@ -123,9 +121,38 @@ namespace NewProject
             }
         }
     }
-    
-    public class MainMenu
+
+    public class GlobalMenu
     {
-        public static readonly string[] Main_menu_elements = { "WYJŚCIE", "Wprowadź DANE", "Wyświetl DANE", "Skasuj DANE", "Sprawdź kiedy EMERYTURA","Wyświetl USTAWIENIA" };
+        public static readonly string[] Global_menu_elements = { "WYJŚCIE", "Wprowadź DANE", "Wyświetl DANE", "Skasuj DANE", "Sprawdź kiedy EMERYTURA", "Wyświetl USTAWIENIA" };
+        public static void GenerateMenu()
+        {
+            for (int i = 0; i < Global_menu_elements.Length; i++){
+                Console.WriteLine($"[{i}] {Global_menu_elements[i]} ");
+            }
+            var temp = GetInput();
+        }
+        public static int GetInput()
+        {
+            getinput:
+            string temp = Console.ReadLine();
+            while (true)
+            {
+                if ((Program.IntCheck(temp)) == true)
+                {
+                    int option = int.Parse(temp);
+                    if ((option < Program.menu_plec.Length) == true)
+                    {
+                        return option;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Wprowadzono błędne dane, spróbuj jeszcze raz :) ");
+                        goto getinput;
+                    }
+
+                }
+            }
+        }
     }
 }
