@@ -77,7 +77,7 @@ namespace NewProject
         string nazwisko = "";
         int wiek = 0;
         
-        static void Main(string[] args)
+        public User()
         {
             User myUser = new User();
             myUser.imie = GetData("imie");
