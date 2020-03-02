@@ -123,4 +123,9 @@ namespace NewProject
             }
         }
     }
+    
+    public class MainMenu
+    {
+        public static readonly string[] Main_menu_elements = { "WYJŚCIE", "Wprowadź DANE", "Wyświetl DANE", "Skasuj DANE", "Sprawdź kiedy EMERYTURA","Wyświetl USTAWIENIA" };
+    }
 }
