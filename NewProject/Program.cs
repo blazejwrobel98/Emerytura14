@@ -99,6 +99,7 @@ namespace NewProject
         {
             while (true)
             {
+                start:
                 Console.WriteLine("Wybierz płeć spośród dostępnych: ");
                 for (int i = 0; i < Program.menu_plec.Length; i++)
                 {
@@ -108,7 +109,16 @@ namespace NewProject
                 if ((Program.IntCheck(temp)) == true)
                 {
                     int plec = int.Parse(temp);
-                    return plec;
+                    if((plec < Program.menu_plec.Length)==true)
+                    {
+                        return plec;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Wprowadzono błędne dane, spróbuj jeszcze raz :) ");
+                        goto start;
+                    }
+
                 }
             }
         }
