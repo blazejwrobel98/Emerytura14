@@ -14,31 +14,11 @@ namespace NewProject
         static void Main(string[] args)
         {
             Console.WriteLine("Aplikacja Emerytura");
+            User user_data = new User();
 
-            firstname:
-            string imie = GetData("imie");
-            if ((InputCheck(imie)) == false)
-            {
-                goto firstname;
-            }
-
-            lastname:
-            string nazwisko = GetData("nazwisko");
-            if ((InputCheck(nazwisko)) == false)
-            {
-                goto lastname;
-            }
-
-            Console.WriteLine($"Witaj {imie} {nazwisko}");
-            Console.Write("Podaj wiek: ");
-            int wiek = int.Parse(Console.ReadLine());
-            Console.WriteLine("Wybierz płeć spośród dostępnych: ");
-            for(int i = 0; i < menu_plec.Length; i++)
-            {
-                Console.WriteLine($"[{i}] {menu_plec[i]} ");
-            }
-            int plec = int.Parse(Console.ReadLine());
-            int do_em = eme_age[plec] - wiek;
+            Console.WriteLine($"Witaj {user_data.imie} {user_data.nazwisko}!\nMasz {user_data.wiek} lat");
+            
+            int do_em = eme_age[user_data.plec] - user_data.wiek;
             if (do_em > 0)
             {
                 Console.WriteLine($"Do emerytury pozostało ci {do_em}");
@@ -64,6 +44,18 @@ namespace NewProject
                 return true;
             }
         }
+        public static bool IntCheck(string value)
+        {
+            if ((String.IsNullOrEmpty(value)) == true || (Regex.IsMatch(value, "[^0-9]")) == true)
+            {
+                Console.WriteLine("Wprowadzono błędne dane, spróbuj jeszcze raz :) ");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
         public static string GetData(string value)
         {
             Console.Write($"Podaj {value}: ");
@@ -71,21 +63,17 @@ namespace NewProject
             return temp;
         }
     }
-    class User
+
+
+    public class User
     {
-        string imie = "";
-        string nazwisko = "";
-        int wiek = 0;
-        
-        public User()
-        {
-            User myUser = new User();
-            myUser.imie = GetData("imie");
-            myUser.nazwisko = GetData("nazwisko");
-            myUser.wiek = GetAge();
-        }
-        static string GetData(string value)
-        {
+        public string imie = GetUserData("imie");
+        public string nazwisko = GetUserData("nazwisko");
+        public int wiek = GetAge();
+        public int plec = GetGender();
+
+        private static string GetUserData(string value)
+        { 
             while (true)
             {
                 string temp = Program.GetData($"{value}");
@@ -95,13 +83,33 @@ namespace NewProject
                 }
             }
         }
-        static int GetAge()
+        private static int GetAge()
         {
             while (true)
             {
                 string temp = Program.GetData("wiek");
-                int wiek = int.Parse(temp);
-                return wiek;
+                if ((Program.IntCheck(temp)) == true)
+                {
+                    int wiek = int.Parse(temp);
+                    return wiek;
+                }
+            }
+        }
+        private static int GetGender()
+        {
+            while (true)
+            {
+                Console.WriteLine("Wybierz płeć spośród dostępnych: ");
+                for (int i = 0; i < Program.menu_plec.Length; i++)
+                {
+                    Console.WriteLine($"[{i}] {Program.menu_plec[i]} ");
+                }
+                string temp = Console.ReadLine();
+                if ((Program.IntCheck(temp)) == true)
+                {
+                    int plec = int.Parse(temp);
+                    return plec;
+                }
             }
         }
     }
