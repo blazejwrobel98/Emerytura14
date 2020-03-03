@@ -31,7 +31,7 @@ namespace NewProject
             Console.Clear();
             if (value.Trim().ToUpper() == "DUPA")
             {
-                Console.WriteLine(" Witam Pana :) ");
+                Console.WriteLine(" HEY! We don't do that here! ");
                 return false;
             }
             else
@@ -60,7 +60,7 @@ namespace NewProject
             Console.Clear();
             if (value.Trim().ToUpper() == "DUPA")
             {
-                Console.WriteLine(" Witam Pana :) ");
+                Console.WriteLine(" HEY! We don't do that here! ");
                 return false;
             }
             else
