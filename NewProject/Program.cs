@@ -29,19 +29,30 @@ namespace NewProject
         public static bool InputCheck(string value)
         {
             Console.Clear();
-            if(value.Trim().ToUpper() == "DUPA")
+            if (value.Trim().ToUpper() == "DUPA")
             {
                 Console.WriteLine(" Witam Pana :) ");
                 return false;
             }
-            if ((String.IsNullOrEmpty(value)) == true || (Regex.IsMatch(value, "[0-9]")) == true)
-            {
-                Console.WriteLine(" Wprowadzono błędne dane, spróbuj jeszcze raz :) ");
-                return false;
-            }
             else
             {
-                return true;
+                if (value.Length > 20)
+                {
+                    Console.WriteLine(" Osiągnięto Limit znaków! ");
+                    return false;
+                }
+                else
+                {
+                    if ((String.IsNullOrEmpty(value)) == true || (Regex.IsMatch(value, "[0-9]")) == true)
+                    {
+                        Console.WriteLine(" Wprowadzono błędne dane, spróbuj jeszcze raz :) ");
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
             }
         }
         public static bool IntCheck(string value)
@@ -52,14 +63,25 @@ namespace NewProject
                 Console.WriteLine(" Witam Pana :) ");
                 return false;
             }
-            if ((String.IsNullOrEmpty(value)) == true || (Regex.IsMatch(value, "[^0-9]")) == true)
-            {
-                Console.WriteLine(" Wprowadzono błędne dane, spróbuj jeszcze raz :) ");
-                return false;
-            }
             else
             {
-                return true;
+                if (value.Length > 3)
+                {
+                    Console.WriteLine(" Osiągnięto Limit znaków! ");
+                    return false;
+                }
+                else
+                {
+                    if ((String.IsNullOrEmpty(value)) == true || (Regex.IsMatch(value, "[^0-9]")) == true)
+                    {
+                        Console.WriteLine(" Wprowadzono błędne dane, spróbuj jeszcze raz :) ");
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
             }
         }
         public static string GetData(string value)
