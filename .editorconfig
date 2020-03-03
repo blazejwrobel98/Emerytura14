@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# IDE0047: Usuń niepotrzebne nawiasy
+dotnet_diagnostic.IDE0047.severity = none

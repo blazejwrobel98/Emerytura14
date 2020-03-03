@@ -43,7 +43,7 @@ namespace NewProject
                 }
                 else
                 {
-                    if ((String.IsNullOrEmpty(value)) == true || (Regex.IsMatch(value, "[0-9]")) == true)
+                    if ((String.IsNullOrEmpty(value)) == true || (Regex.IsMatch(value, @"[0-9\W]")) == true)
                     {
                         Console.WriteLine(" Wprowadzono błędne dane, spróbuj jeszcze raz :) ");
                         return false;
@@ -203,7 +203,7 @@ namespace NewProject
                     }
                     else
                     {
-                        Console.WriteLine($"\n Imię: {Program.user_data.imie} \n Nazwisko: {Program.user_data.nazwisko}\n Wiek: {Program.user_data.wiek}");
+                        Console.WriteLine($"\n Imię: {Program.user_data.imie} \n Nazwisko: {Program.user_data.nazwisko}\n Wiek: {Program.user_data.wiek} \n Płeć: {Program.menu_plec[Program.user_data.plec]}");
                     }
                     Program.Pause();
                     break;
