@@ -8,7 +8,7 @@ namespace NewProject
         public static readonly int[] eme_age = { 60, 65 };
         public static readonly string[] menu_plec = { "Kobieta", "Mężczyzna" };
         public static User user_data;
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
             Console.WriteLine(" Aplikacja Emerytura");
             while (true)
@@ -159,7 +159,7 @@ namespace NewProject
 
     public class GlobalMenu
     {
-        public static readonly string[] Global_menu_elements = { "WYJŚCIE", "Wprowadź DANE", "Wyświetl DANE", "Skasuj DANE", "Sprawdź kiedy EMERYTURA", "Wyświetl USTAWIENIA" };
+        private static readonly string[] Global_menu_elements = { "WYJŚCIE", "Wprowadź DANE", "Wyświetl DANE", "Skasuj DANE", "Sprawdź kiedy EMERYTURA", "Wyświetl USTAWIENIA" };
         public static int GenerateMenu()
         {
             while (true)
@@ -194,7 +194,6 @@ namespace NewProject
             {
                 case 1:
                     Program.user_data = new User();
-                    Program.Pause();
                     break;
                 case 2:
                     if (Program.user_data == null)
